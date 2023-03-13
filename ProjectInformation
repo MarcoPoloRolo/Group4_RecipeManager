@@ -1,0 +1,28 @@
+# PROG71985_GroupProject
+This is the group project for group 4, The BEST Group
+
+To-Do:
+3. a recipe (as in cooking) manager
+
+Mandatory Features:
+1. add a new recipe
+2. delete an existing recipe
+3. update an existing recipe
+4. display single recipe
+5. display range recipe
+6. display all recipe
+7. search for recipe
+8. friendly/easy to use UI (or menu system)
+9. save accumulated data to disk
+10. load accumulated data from disk
+11. you may add additional features, increasing your group’s overall mark to a maximum of 100%.
+
+Additional Features:
+1. Class grouping system of recipes (desserts, appetizers)
+2. display rating (sub to option 6)
+
+Organization:
+• modules properly separated and coded into .h and .c files
+• modules should be commented according to class practices and include who authored and/or the principal editor of the module
+• build instructions should be included (or obvious (e.g. a single VS solution))
+• wherever used, tests (unit or otherwise) should be properly documented and included
