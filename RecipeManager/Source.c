@@ -32,11 +32,7 @@ int main(void) {
 				break;
 			case 8:
 				break;
+		}
 	}
-}
-
-
-
-
 	return 0;
 }
