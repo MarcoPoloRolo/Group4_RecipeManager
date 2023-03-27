@@ -27,6 +27,9 @@
     <ClCompile Include="Ingredients.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Recipe.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CookBook.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Ingredients.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Recipe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
