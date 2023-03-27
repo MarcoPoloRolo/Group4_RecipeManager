@@ -21,9 +21,21 @@
     <ClCompile Include="CookBook.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Directions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ingredients.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CookBook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Directions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ingredients.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
