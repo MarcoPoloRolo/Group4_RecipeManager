@@ -1,10 +1,13 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
 #include "CookBook.h"
-#include <stdbool.h>
+#include "Directions.h"
+#include "Ingredients.h"
+#include "Recipe.h"
 
-int main(void) {
 
+
+int main(void) 
+{
+	FILE* fp = fopen(FILENAME, "r");
 	printTitle();
 	bool programcontinue = true;
 	while (programcontinue) {

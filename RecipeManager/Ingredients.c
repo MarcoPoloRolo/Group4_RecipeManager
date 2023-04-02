@@ -1,3 +1,12 @@
-#include "Directions.h"
-#include "Ingredients.h"
-#include "CookBook.h"
+#include "Recipe.h"
+
+
+void displayIngredients(INGREDIENTS i)
+{
+	
+}
+
+INGREDIENTS GetIngredient(RECIPE r)
+{
+
+}

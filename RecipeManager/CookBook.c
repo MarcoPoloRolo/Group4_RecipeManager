@@ -1,7 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "CookBook.h"
-#include "Directions.h"
-#include "Ingredients.h"
+
 
 void printTitle() {
     printf("------------------------------------------------\n");
