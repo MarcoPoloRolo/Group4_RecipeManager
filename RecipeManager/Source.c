@@ -7,7 +7,22 @@
 
 int main(void) 
 {
+	RECIPE Book[MAX_RECIPIE_COUNT] = { 0 };
 	FILE* fp = fopen(FILENAME, "r");
+	if (!fp)
+	{
+		for (int i = 0; i <= MAX_RECIPIE_COUNT; i++)
+		{
+			if (!WriteRecipeToFile(CreateRecipe(i, " ")))
+				fprintf(stderr, "Write error.");
+		}
+	}
+	for (int i = 0; i <= MAX_RECIPIE_COUNT; i++)
+	{
+		Book[i] = ReadRecipieFromFile(fp);
+	}
+	fclose(fp);
+
 	printTitle();
 	bool programcontinue = true;
 	while (programcontinue) {

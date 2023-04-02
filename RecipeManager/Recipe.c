@@ -9,3 +9,13 @@ RECIPE CreateRecipe(int index, char* name)
 {
 
 }
+
+bool WriteRecipeToFile(RECIPE r)
+{
+
+}
+
+RECIPE ReadRecipeFromFile(FILE* fp)
+{
+
+}

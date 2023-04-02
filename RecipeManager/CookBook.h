@@ -10,7 +10,6 @@
 
 
 
-
 void printTitle();
 void printMenuOptions();
 int getUserMenuInput();

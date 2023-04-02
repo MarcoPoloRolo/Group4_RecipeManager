@@ -19,3 +19,7 @@ typedef struct Recipe {
 void DisplayRecipe(RECIPE);
 
 RECIPE CreateRecipe(int, char*);
+
+bool WriteRecipeToFile(RECIPE);
+
+RECIPE ReadRecipieFromFile(FILE*);
