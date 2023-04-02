@@ -11,17 +11,19 @@ int main(void)
 	FILE* fp = fopen(FILENAME, "r");
 	if (!fp)
 	{
-		for (int i = 0; i <= MAX_RECIPIE_COUNT; i++)
+		for (int i = 0; i < MAX_RECIPIE_COUNT; i++)
 		{
 			if (!WriteRecipeToFile(CreateRecipe(i, " ")))
 				fprintf(stderr, "Write error.");
 		}
 	}
-	for (int i = 0; i <= MAX_RECIPIE_COUNT; i++)
+	for (int i = 0; i < MAX_RECIPIE_COUNT; i++)
 	{
+		fp = fopen(FILENAME, "r");
 		Book[i] = ReadRecipieFromFile(fp);
+		fclose(fp);
 	}
-	fclose(fp);
+	
 
 	printTitle();
 	bool programcontinue = true;

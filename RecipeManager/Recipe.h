@@ -22,4 +22,4 @@ RECIPE CreateRecipe(int, char*);
 
 bool WriteRecipeToFile(RECIPE);
 
-RECIPE ReadRecipieFromFile(FILE*);
+RECIPE ReadRecipeFromFile(FILE*);
