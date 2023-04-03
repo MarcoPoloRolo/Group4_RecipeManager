@@ -12,8 +12,8 @@ typedef struct Recipe {
 	int Indexnum;
 	char* Name;
 	RATING rating;
-	DIRECTIONS directions;
-	INGREDIENTS ingredients;
+	DIRECTIONS* directions;
+	INGREDIENTS* ingredients;
 } RECIPE;
 
 void DisplayRecipe(RECIPE);
