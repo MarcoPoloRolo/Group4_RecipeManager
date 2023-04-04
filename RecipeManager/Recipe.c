@@ -19,3 +19,12 @@ RECIPE ReadRecipeFromFile(FILE* fp)
 {
 
 }
+
+void converttolowercase(char *input)
+{
+	for (int i = 0; i < strlen(input); i++)
+	{
+		input[i] = tolower(input[i]);
+	}
+}
+

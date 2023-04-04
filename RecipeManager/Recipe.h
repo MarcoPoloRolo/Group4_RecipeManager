@@ -10,10 +10,10 @@ typedef struct Rating {
 
 typedef struct Recipe {
 	int Indexnum;
-	char* Name;
+	char Name;
 	RATING rating;
-	DIRECTIONS* directions;
-	INGREDIENTS* ingredients;
+	DIRECTIONS directions[MAX_COUNT];
+	INGREDIENTS ingredients[MAX_COUNT];
 } RECIPE;
 
 void DisplayRecipe(RECIPE);
@@ -23,3 +23,5 @@ RECIPE CreateRecipe(int, char*);
 bool WriteRecipeToFile(RECIPE);
 
 RECIPE ReadRecipeFromFile(FILE*);
+
+void converttolowercase(char*);

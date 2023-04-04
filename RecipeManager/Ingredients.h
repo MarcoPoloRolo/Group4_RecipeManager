@@ -5,7 +5,7 @@
 
 typedef struct Ingredients {
 	int Ingscount;
-	char* Ingredient;
+	char Ingredient[MAXSTR];
 } INGREDIENTS;
 
 void displayIngredients(INGREDIENTS);

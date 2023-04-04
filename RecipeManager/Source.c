@@ -20,7 +20,7 @@ int main(void)
 	for (int i = 0; i < MAX_RECIPIE_COUNT; i++)
 	{
 		fp = fopen(FILENAME, "r");
-		Book[i] = ReadRecipieFromFile(fp);
+		Book[i] = ReadRecipeFromFile(fp);
 		fclose(fp);
 	}
 	
