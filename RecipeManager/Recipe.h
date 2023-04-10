@@ -1,4 +1,5 @@
 #pragma once
+#define MAX_RECIPE_COUNT 50
 #include "CookBook.h"
 #include "Directions.h"
 #include "Ingredients.h"
@@ -16,9 +17,21 @@ typedef struct Recipe {
 	INGREDIENTS ingredients[MAX_COUNT];
 } RECIPE;
 
-void DisplayRecipe(RECIPE);
+RECIPE CreateRecipe(int, char*);	// 1)
 
-RECIPE CreateRecipe(int, char*);
+void DeleteRecipe(RECIPE);			// 2)
+
+void UpdateRecipe(RECIPE);			// 3)
+
+void DisplayRecipe(int);			// 4)
+
+void DisplayMultipleRecipes(void);	// 5)
+
+void DisplayAllRecipes(void);		// 6)
+
+RECIPE SeerchForRecipe(char*);		// 7)
+
+RECIPE RateRecipe(RECIPE);			// 8)
 
 bool WriteRecipeToFile(RECIPE);
 

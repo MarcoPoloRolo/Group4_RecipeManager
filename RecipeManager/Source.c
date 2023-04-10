@@ -7,17 +7,17 @@
 
 int main(void) 
 {
-	RECIPE Book[MAX_RECIPIE_COUNT] = { 0 };
+	RECIPE Book[MAX_RECIPE_COUNT] = { 0 }; //MAX_RECIPE_COUNT is currently set to 50. Can be changed later but right now, it's just to avoid errors
 	FILE* fp = fopen(FILENAME, "r");
 	if (!fp)
 	{
-		for (int i = 0; i < MAX_RECIPIE_COUNT; i++)
+		for (int i = 0; i < MAX_RECIPE_COUNT; i++)
 		{
 			if (!WriteRecipeToFile(CreateRecipe(i, " ")))
 				fprintf(stderr, "Write error.");
 		}
 	}
-	for (int i = 0; i < MAX_RECIPIE_COUNT; i++)
+	for (int i = 0; i < MAX_RECIPE_COUNT; i++)
 	{
 		fp = fopen(FILENAME, "r");
 		Book[i] = ReadRecipeFromFile(fp);
