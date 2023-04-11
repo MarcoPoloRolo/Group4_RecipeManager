@@ -1,14 +1,26 @@
 #include "Recipe.h"
 
-void DisplayRecipe(RECIPE r)
+RECIPE CreateRecipe(int, char*) //Luke's function
 {
 
 }
 
-RECIPE CreateRecipe(int index, char* name)
+void DeleteRecipe(RECIPE) //Luke's function
 {
 
 }
+
+void UpdateRecipe(RECIPE) //Luke's function
+{
+
+}
+
+void DisplayRecipe(int recipeIndex) //Marko does all display functions
+{
+
+}
+
+//I think Julian is doing both search and rate a recipe
 
 bool WriteRecipeToFile(RECIPE r)
 {
