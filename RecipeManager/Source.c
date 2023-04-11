@@ -7,17 +7,17 @@
 
 int main(void) 
 {
-	RECIPE Book[MAX_RECIPIE_COUNT] = { 0 };
+	RECIPE Book[MAX_COUNT] = { 0 };
 	FILE* fp = fopen(FILENAME, "r");
 	if (!fp)
 	{
-		for (int i = 0; i < MAX_RECIPIE_COUNT; i++)
+		for (int i = 0; i < MAX_COUNT; i++)
 		{
 			if (!WriteRecipeToFile(CreateRecipe(i, " ")))
 				fprintf(stderr, "Write error.");
 		}
 	}
-	for (int i = 0; i < MAX_RECIPIE_COUNT; i++)
+	for (int i = 0; i < MAX_COUNT; i++)
 	{
 		fp = fopen(FILENAME, "r");
 		Book[i] = ReadRecipeFromFile(fp);
@@ -34,24 +34,64 @@ int main(void)
 		switch (caseinput) {
 			case 0: 
 				printf("0\n");
-				break;
+				
 			case 1: 
 				printf("1\n");
-				break;
+				
 			case 2: 
-				break;
+			{
+
+			}
+
 			case 3: 
-				break;
+			{
+
+			}
+
 			case 4: 
-				break;
+			{
+
+			}
+
 			case 5: 
-				break;
+			{
+
+			}
+
 			case 6: 
-				break;
+			{
+
+			}
+
 			case 7: 
+			{
+				char input[MAXSTR];
+				printf("\nPlease enter the name of the recipe you are looking for: ");
+				gets(input);
+				converttolowercase(input);
+				int i = 0;
+				for (i = 0; i < MAX_COUNT;)
+				{
+					char search[MAXSTR] = Book[i].Name;
+					converttolowercase(search);
+					if (strcmp(input, search) != 0)
+						i++;
+					else
+					{
+						DisplayRecipe(Book[i]);
+						break;
+					}
+				}
+				printf("\nNo Recipe Match Found.");
 				break;
+
+			}
+				
 			case 8:
-				break;
+			{
+
+			}
+				
 		}
 	}
 	return 0;
