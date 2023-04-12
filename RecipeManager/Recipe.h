@@ -1,5 +1,4 @@
 #pragma once
-#define MAX_COUNT 25
 #include "CookBook.h"
 #include "Directions.h"
 #include "Ingredients.h"
