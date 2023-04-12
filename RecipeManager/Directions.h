@@ -4,7 +4,6 @@
 
 
 typedef struct Directions {
-	int Dirscount;
 	char Direction[MAXSTR];
 } DIRECTIONS;
 

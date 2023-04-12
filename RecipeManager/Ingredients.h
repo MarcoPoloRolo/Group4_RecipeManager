@@ -4,7 +4,6 @@
 
 
 typedef struct Ingredients {
-	int Ingscount;
 	char Ingredient[MAXSTR];
 } INGREDIENTS;
 
