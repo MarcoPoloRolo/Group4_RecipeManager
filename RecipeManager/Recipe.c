@@ -99,13 +99,6 @@ RECIPE ReadRecipeFromFile(FILE* fp)
 	RECIPE r = CreateNewRecipe(indexnum);
 	SetRecipeName(&r, name);
 	RateRecipe(&r, rating);
-	for (int i = 0; i < dircount; i++)
-	{
-		fgets(direction, MAXSTR, fp);
-		removenewline(direction);
-		if (!SetRecipeDirection(&r, direction))
-			fprintf(stderr, "Error reading from file.");
-	}
 	for (int i = 0; i < ingcount; i++)
 	{
 		fgets(ingredient, MAXSTR, fp);
@@ -113,6 +106,14 @@ RECIPE ReadRecipeFromFile(FILE* fp)
 		if (!SetRecipeIngredient(&r, ingredient))
 			fprintf(stderr, "Error reading from file.");
 	}
+	for (int i = 0; i < dircount; i++)
+	{
+		fgets(direction, MAXSTR, fp);
+		removenewline(direction);
+		if (!SetRecipeDirection(&r, direction))
+			fprintf(stderr, "Error reading from file.");
+	}
+
 	return r;
 }
 
