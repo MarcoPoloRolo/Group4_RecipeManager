@@ -13,3 +13,7 @@ Marko:
 Luke:
 
 Julian:
+-File I/O (Beginning of program creating new file when none present, reading from file into array of recipes, saving to file at end of program) 
+-Related functions used in File I/O and other areas of program (Create-New-Recipe, set recipe direction/ingredient, set recipe name)
+-Search for recipe (including Convert-to-lowercase and remove-new-line function)
+-Rate recipe (including RateRecipe function)
