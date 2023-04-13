@@ -68,24 +68,23 @@ int main(void)
 			{
 				char input[MAXSTR];
 				printf("\nPlease enter the name of the recipe you are looking for: ");
-				gets(input);
+				fgets(input, MAXSTR, stdin);
+				removenewline(input);
 				converttolowercase(input);
-				int i = 0;
-				for (i = 0; i < MAX_COUNT;)
+				int found = -1;
+				for (int i = 0; i < MAX_COUNT; i++)
 				{
-					char search[MAXSTR] = Book[i].Name;
+					char search[MAXSTR];
+					strcpy_s(search, sizeof(Book[i].Name), Book[i].Name);
 					converttolowercase(search);
-					if (strcmp(input, search) != 0)
-						i++;
-					else
-					{
-						DisplayRecipe(Book[i]);
-						break;
-					}
+					if (strcmp(search, input) == 0)
+						found = i;
 				}
-				printf("\nNo Recipe Match Found.");
+				if (found != -1)
+					DisplayRecipe(Book[found]);
+				else
+					printf("\nNo recipe found.");
 				break;
-
 			}
 				
 			case 8:
