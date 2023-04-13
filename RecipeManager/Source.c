@@ -13,7 +13,7 @@ int main(void)
 	{
 		for (int i = 0; i < MAX_COUNT; i++)
 		{
-			WriteRecipeToFile(CreateNewRecipe(i));
+			WriteRecipeToFile(CreateNewRecipe(i + 1));
 		}
 	}
 	if (fp)
@@ -90,17 +90,32 @@ int main(void)
 				
 			case 8:
 			{
-
+				int sel;
+				printf("\nWhich recipe would you like to rate? (Enter index number): ");
+				if (!scanf("%d", &sel) && getchar() && sel < 26 && sel > 0)
+					printf("\nInvalid recipe index entered.");
+				else if (Book[sel - 1].Dircount == 0 && Book[sel - 1].Ingcount == 0)
+					printf("\nNo recipe at that index.");
+				else
+				{
+					int rating;
+					printf("\nEnter a rating, from 1 to 5: ");
+					if (!scanf("%d", &rating) && getchar() && rating < 6 && rating > 0)
+						printf("\nIncorrect rating value entered.");
+					else
+						RateRecipe(&Book[sel - 1], rating);
+				}
+				break;
 			}
 				
 		}
 	}
 
 	FILE* fp3 = fopen(FILENAME, "w");
+	fclose(fp3);
 	for (int i = 0; i < MAX_COUNT; i++)
 	{
 		WriteRecipeToFile(Book[i]);
 	}
-	fclose(fp3);
 	return 0;
 }

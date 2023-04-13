@@ -30,6 +30,12 @@ void DisplayRecipe(RECIPE) //Marko does all display functions
 
 //I think Julian is doing both search and rate a recipe
 
+void RateRecipe(RECIPE *r, int rating)
+{
+	if (r->rating.rating == 0)
+		r->rating.rating = rating;
+}
+
 void removenewline(char* buffer) // removes newline to prevent errors reading and displaying data
 {
 	for (int i = 0; i < strlen(buffer); i++)
@@ -55,7 +61,7 @@ bool WriteRecipeToFile(RECIPE r)
 	return true;
 }
 
-bool SetRecipeIngredient(RECIPE* r, char* ingredient)
+bool SetRecipeIngredient(RECIPE *r, char* ingredient)
 {
 	if (r->Ingcount == MAX_COUNT)
 		return false;
@@ -65,7 +71,7 @@ bool SetRecipeIngredient(RECIPE* r, char* ingredient)
 	return true;
 }
 
-bool SetRecipeDirection(RECIPE* r, char* direction)
+bool SetRecipeDirection(RECIPE *r, char* direction)
 {
 	if (r->Dircount == MAX_COUNT)
 		return false;
@@ -75,7 +81,7 @@ bool SetRecipeDirection(RECIPE* r, char* direction)
 	return true;
 }
 
-void SetRecipeName(RECIPE* r, char* name)
+void SetRecipeName(RECIPE *r, char* name)
 {
 	strcpy(r->Name, name);
 }
@@ -93,6 +99,7 @@ RECIPE ReadRecipeFromFile(FILE* fp)
 	removenewline(name);
 	RECIPE r = CreateNewRecipe(indexnum);
 	SetRecipeName(&r, name);
+	RateRecipe(&r, rating);
 	for (int i = 0; i < dircount; i++)
 	{
 		fgets(direction, MAXSTR, fp);
@@ -109,7 +116,6 @@ RECIPE ReadRecipeFromFile(FILE* fp)
 	}
 	return r;
 }
-
 
 void converttolowercase(char *input)
 {

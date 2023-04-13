@@ -32,7 +32,7 @@ void DisplayAllRecipes(void);		// 6)
 
 RECIPE SeerchForRecipe(char*);		// 7)
 
-RECIPE RateRecipe(RECIPE);			// 8)
+void RateRecipe(RECIPE*, int);			// 8)
 
 bool SetRecipeIngredient(RECIPE*, char*);
 
