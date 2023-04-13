@@ -32,8 +32,7 @@ void DisplayRecipe(RECIPE) //Marko does all display functions
 
 void RateRecipe(RECIPE *r, int rating)
 {
-	if (r->rating.rating == 0)
-		r->rating.rating = rating;
+	r->rating.rating = rating;
 }
 
 void removenewline(char* buffer) // removes newline to prevent errors reading and displaying data

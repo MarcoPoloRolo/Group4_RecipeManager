@@ -90,12 +90,10 @@ int main(void)
 				
 			case 8:
 			{
-				int sel;
+				int sel = 1;
 				printf("\nWhich recipe would you like to rate? (Enter index number): ");
-				if (!scanf("%d", &sel) && getchar() && sel < 26 && sel > 0)
+				if (!scanf("%d", &sel) && getchar() && sel <= 25 && sel >= 1 || Book[sel-1].Name == "EMPTY")
 					printf("\nInvalid recipe index entered.");
-				else if (Book[sel - 1].Dircount == 0 && Book[sel - 1].Ingcount == 0)
-					printf("\nNo recipe at that index.");
 				else
 				{
 					int rating;
