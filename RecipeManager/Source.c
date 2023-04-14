@@ -265,6 +265,7 @@ int main(void)
 			{
 				char input[MAXSTR];
 				printf("\nPlease enter the name of the recipe you are looking for: ");
+				getchar();
 				fgets(input, MAXSTR, stdin);
 				removenewline(input);
 				converttolowercase(input);
@@ -287,8 +288,10 @@ int main(void)
 			{
 				int sel = 1;
 				printf("\nWhich recipe would you like to rate? (Enter index number): ");
-				if (!scanf("%d", &sel) && getchar() && sel <= 25 && sel >= 1 || Book[sel-1].Name == "EMPTY")
+				if (!scanf("%d", &sel) && getchar() && sel <= 25 && sel >= 1)
 					printf("\nInvalid recipe index entered.");
+				else if (strcmp(Book[sel - 1].Name, "EMPTY") == 0)
+					printf("\nNo recipe in that index.");
 				else
 				{
 					int rating;
