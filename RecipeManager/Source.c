@@ -145,7 +145,7 @@ int main(void)
 					printf("These is no recipe to delete.\n");
 				break;
 			}
-			case 3: //Edit a recipe (unfinished)
+			case 3: //Edit a recipe
 			{
 				bool recipeExists = false;
 				for (int i = 0; i < MAX_COUNT; i++) //Check if any recipes exist to be edited
@@ -165,15 +165,79 @@ int main(void)
 							recipeEditNumber++;
 						}
 					}
-					int edit;
-					if (scanf("%d", &edit) && getchar()) //Input validity check
+					int recipeEditIndex;
+					if (scanf("%d", &recipeEditIndex) && strcmp(Book[recipeEditIndex -1].Name, "EMPTY") && getchar()) //Input validity check
 					{
-						printf("Editing recipe #%d\n", edit); //For testing
+						printf("Which part of the recipe would you like to edit?\n");
+						printf("1) Name\n");
+						printf("2) Ingredients\n");
+						printf("3) Directions\n");
+						int recipeEditType;
+						if (!scanf("%d", &recipeEditType) || recipeEditType < 1 || recipeEditType > 3)
+						{
+							printf("Invalid response, please try again.\n");
+							break;
+						}
+						switch (recipeEditType) //Gets input and changes value in araay
+							{
+							case 1: //Recipe name
+							{
+								printf("Please enter the new name of the recipe:\n");
+								char name[MAXSTR];
+								getchar();
+								fgets(name, MAXSTR, stdin);
+								removenewline(name);
+								SetRecipeName(&Book[recipeEditIndex - 1], name);
+								printf("Name entered successfully\n");
+								break;
+							}
+							case 2: //Ingredients
+							{
+								printf("Which ingredient would you like to edit?\n");
 
-						//to be written still
+								for (int i = 0; i < Book[recipeEditIndex - 1].Ingcount; i++)
+								{
+									printf("%d) %s\n", i+1, Book[recipeEditIndex - 1].ingredients[i].Ingredient);
+								}
+								int ingredientEdit;
+								if (scanf("%d", &ingredientEdit) && ingredientEdit <= Book[recipeEditIndex - 1].Ingcount)
+								{
+									getchar();
+									printf("Enter new ingredient: ");
+									char ingredient[MAXSTR];
+									fgets(ingredient, MAXSTR, stdin);
+									removenewline(ingredient);
+									strcpy(Book[recipeEditIndex - 1].ingredients[ingredientEdit - 1].Ingredient, ingredient);
+									printf("Ingredient entered successfully\n");
+								}
+								else
+									printf("Invalid response, please try again.\n");
+								break;
+							}
+							case 3: //Directions
+							{
+								printf("Which direction would you like to edit?\n");
 
-
-
+								for (int i = 0; i < Book[recipeEditIndex - 1].Dircount; i++)
+								{
+									printf("%d) %s\n", i + 1, Book[recipeEditIndex - 1].directions[i].Direction);
+								}
+								int directionEdit;
+								if (scanf("%d", &directionEdit) && directionEdit <= Book[recipeEditIndex - 1].Dircount)
+								{
+									getchar();
+									printf("Enter new direction: ");
+									char direction[MAXSTR];
+									fgets(direction, MAXSTR, stdin);
+									removenewline(direction);
+									strcpy(Book[recipeEditIndex - 1].directions[directionEdit - 1].Direction, direction);
+									printf("Direction entered successfully\n");
+								}
+								else
+									printf("Invalid response, please try again.\n");
+								break;
+							}
+						}
 					}
 					else
 						printf("That recipe doesn't exist. Please try again.\n");
@@ -236,6 +300,7 @@ int main(void)
 				}
 				break;
 			}
+			// still need a default case, for if a letter or a string is entered
 		}
 	}
 

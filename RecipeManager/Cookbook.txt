@@ -7,15 +7,18 @@ Chips
 Literally just a bag of chips
 Open them and eat them. It's not that hard.
 2
-4
+7
 3
 0
-Ham & Cheese Samdwich
-Ham slices
-Cheese slices
+Ham & Cheese Sandwich
+Ham
+Cheese Slices
 Mayo
 Bread
-Place the cheese and ham on one slice of bread
+Spread mayo on the other slice of bread.
+l
+l
+Place the cheese and ham on one slice of bread.
 Spread mayo on the other slice of bread
 Put both pieces of bread together and enjoy!
 3
