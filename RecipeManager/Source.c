@@ -34,36 +34,68 @@ int main(void)
 
 		switch (caseinput) {
 			case 0: 
-				printf("0\n");
-				
+			{
+				programcontinue = false;
+				break;
+			}
 			case 1: 
-				printf("1\n");
-				
-			case 2: 
+			{
+				bool firstEmptyIndexFound = false;
+				int indexNumber = 0;
+				for (int i = 0; i < MAX_COUNT; i++) //Finds first empty recipe slot
+				{
+					if (firstEmptyIndexFound == false && Book[i].Ingcount == 0)
+					{
+						firstEmptyIndexFound = true;
+						indexNumber = i;
+					}
+				}
+				printf("Please enter the name of the recipe:\n"); //Gets user input
+				char name[MAXSTR];
+				scanf("%s", name);
+				strcpy(Book[indexNumber].Name, name);
+				printf("Please enter the number of ingredients in the recipe:\n");
+				scanf("%d", &Book[indexNumber].Ingcount);
+				printf("Please enter each of the %d ingredient seperately.\n", Book[indexNumber].Ingcount);
+				for (int i = 0; i < Book[indexNumber].Ingcount; i++)
+				{
+					printf("%d) ", i+1);
+					scanf("%s", &Book[indexNumber].ingredients[i].Ingredient);
+				}
+				printf("Please enter the number of directions in the recipe:\n");
+				scanf("%d", &Book[indexNumber].Ingcount);
+				printf("Please enter each of the %d directions seperately.\n", Book[indexNumber].Dircount);
+				for (int i = 0; i < Book[indexNumber].Dircount; i++)
+				{
+					printf("%d) ", i + 1);
+					scanf("%s", &Book[indexNumber].directions[i].Direction);
+				}
+				break;
+			}
+			case 2:
 			{
 
 			}
-
 			case 3: 
 			{
 
+				break;
 			}
-
 			case 4: 
 			{
 
+				break;
 			}
-
 			case 5: 
 			{
 
+				break;
 			}
-
 			case 6: 
 			{
 
+				break;
 			}
-
 			case 7: 
 			{
 				char input[MAXSTR];

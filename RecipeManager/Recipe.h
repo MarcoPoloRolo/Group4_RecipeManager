@@ -18,11 +18,13 @@ typedef struct Recipe {
 	INGREDIENTS ingredients[MAX_COUNT];
 } RECIPE;
 
-RECIPE CreateNewRecipe(int);	// 1)
+RECIPE CreateNewRecipe(int);
 
-void DeleteRecipe(RECIPE);			// 2)
+RECIPE AddNewRecipe(RECIPE);			// 1)
 
-void UpdateRecipe(RECIPE);			// 3)
+RECIPE DeleteRecipe(RECIPE);			// 2)
+
+RECIPE UpdateRecipe(RECIPE);			// 3)
 
 void DisplayRecipe(RECIPE);			// 4)
 
