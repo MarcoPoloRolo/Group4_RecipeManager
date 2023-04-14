@@ -40,36 +40,54 @@ int main(void)
 			}
 			case 1: 
 			{
-				bool firstEmptyIndexFound = false;
-				int indexNumber = 0;
-				for (int i = 0; i < MAX_COUNT; i++) //Finds first empty recipe slot
+				int i = 0;
+				int indexNumber = -1;
+				while (i < MAX_COUNT)
 				{
-					if (firstEmptyIndexFound == false && Book[i].Ingcount == 0)
-					{
-						firstEmptyIndexFound = true;
+					if (strcmp(Book[i].Name, "EMPTY") == 0)
 						indexNumber = i;
+					i++;
+				}
+				if (indexNumber != -1)
+				{
+					printf("Please enter the name of the recipe:\n"); //Gets user input
+					char name[MAXSTR];
+					getchar();
+					fgets(name, MAXSTR, stdin);
+					removenewline(name);
+					SetRecipeName(&Book[indexNumber], name);
+					printf("Please enter the number of ingredients in the recipe (max 25), then the number of directions (max 25):\n");
+					int ingcount = -1;
+					int dircount = -1;
+					if (!scanf("%d", &ingcount) && getchar() && ingcount > 0 && ingcount <= MAX_COUNT)
+						printf("\nToo many or not enough ingredients.");
+					else if (!scanf("%d", &dircount) && getchar() && dircount > 0 && dircount <= MAX_COUNT)
+						printf("\nToo many or not enough directions entered.");
+					else
+					{
+						getchar();
+						for (int i = 0; i < ingcount; i++)
+						{
+							printf(" Enter ingredient %d) ", i + 1);
+							char ingredient[MAXSTR];
+							fgets(ingredient, MAXSTR, stdin);
+							removenewline(ingredient);
+							if (!SetRecipeIngredient(&Book[indexNumber], ingredient))
+								printf("\nMax number of ingredients reached.");
+						}
+						for (int i = 0; i < dircount; i++)
+						{
+							printf(" Enter ingredient %d) ", i + 1);
+							char direction[MAXSTR];
+							fgets(direction, MAXSTR, stdin);
+							removenewline(direction);
+							if (!SetRecipeDirection(&Book[indexNumber], direction))
+								printf("\nMax number of directions reached.");
+						}
 					}
 				}
-				printf("Please enter the name of the recipe:\n"); //Gets user input
-				char name[MAXSTR];
-				scanf("%s", name);
-				strcpy(Book[indexNumber].Name, name);
-				printf("Please enter the number of ingredients in the recipe:\n");
-				scanf("%d", &Book[indexNumber].Ingcount);
-				printf("Please enter each of the %d ingredient seperately.\n", Book[indexNumber].Ingcount);
-				for (int i = 0; i < Book[indexNumber].Ingcount; i++)
-				{
-					printf("%d) ", i + 1);
-					scanf("%s", &Book[indexNumber].ingredients[i].Ingredient);
-				}
-				printf("Please enter the number of directions in the recipe:\n");
-				scanf("%d", &Book[indexNumber].Ingcount);
-				printf("Please enter each of the %d directions seperately.\n", Book[indexNumber].Dircount);
-				for (int i = 0; i < Book[indexNumber].Dircount; i++)
-				{
-					printf("%d) ", i + 1);
-					scanf("%s", &Book[indexNumber].directions[i].Direction);
-				}
+				else
+					printf("\nSorry, no recipe slots empty.");
 				break;
 			}
 			case 2:
