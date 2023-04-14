@@ -20,12 +20,6 @@ typedef struct Recipe {
 
 RECIPE CreateNewRecipe(int);
 
-RECIPE AddNewRecipe(RECIPE);			// 1)
-
-RECIPE DeleteRecipe(RECIPE);			// 2)
-
-RECIPE UpdateRecipe(RECIPE);			// 3)
-
 void DisplayRecipe(RECIPE);			// 4)
 
 void DisplayMultipleRecipes(void);	// 5)

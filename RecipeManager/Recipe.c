@@ -12,32 +12,6 @@ RECIPE CreateNewRecipe(int index)
 	return r;
 }
 
-
-RECIPE AddNewRecipe(RECIPE book) //Luke's function
-{
-
-
-
-
-	return(book);
-}
-
-RECIPE DeleteRecipe(RECIPE book) //Luke's function
-{
-
-
-
-	return(book);
-}
-
-RECIPE UpdateRecipe(RECIPE book) //Luke's function
-{
-
-
-
-	return(book);
-}
-
 void DisplayRecipe(RECIPE book) //Marko does all display functions
 {
 

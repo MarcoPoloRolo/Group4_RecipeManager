@@ -33,64 +33,69 @@ int main(void)
 		int caseinput = getUserMenuInput();
 
 		switch (caseinput) {
-			case 0: 
+			case 0: //Quit
 			{
 				programcontinue = false;
 				break;
 			}
-			case 1: 
+			case 1: //Add a new recipe
 			{
 				int i = 0;
 				int indexNumber = -1;
-				while (i < MAX_COUNT)
+				while (i < MAX_COUNT) //Finds first empty recipe
 				{
-					if (strcmp(Book[i].Name, "EMPTY") == 0)
+					if (strcmp(Book[i].Name, "EMPTY") == 0 && indexNumber == -1)
 						indexNumber = i;
 					i++;
 				}
 				if (indexNumber != -1)
 				{
-					printf("Please enter the name of the recipe:\n"); //Gets user input
+					printf("Please enter the name of the recipe, or 0 to cancel:\n"); //Gets user input and assigns it the values in array
 					char name[MAXSTR];
 					getchar();
 					fgets(name, MAXSTR, stdin);
-					removenewline(name);
-					SetRecipeName(&Book[indexNumber], name);
-					printf("Please enter the number of ingredients in the recipe (max 25), then the number of directions (max 25):\n");
-					int ingcount = -1;
-					int dircount = -1;
-					if (!scanf("%d", &ingcount) && getchar() && ingcount > 0 && ingcount <= MAX_COUNT)
-						printf("\nToo many or not enough ingredients.");
-					else if (!scanf("%d", &dircount) && getchar() && dircount > 0 && dircount <= MAX_COUNT)
-						printf("\nToo many or not enough directions entered.");
-					else
+					if (!strcmp(name, "0"))
 					{
-						getchar();
-						for (int i = 0; i < ingcount; i++)
+						removenewline(name);
+						SetRecipeName(&Book[indexNumber], name);
+						printf("Please enter the number of ingredients in the recipe (max 25), then the number of directions (max 25):\n");
+						int ingcount = -1;
+						int dircount = -1;
+						if (!scanf("%d", &ingcount) && getchar() && ingcount > 0 && ingcount <= MAX_COUNT)
+							printf("\nToo many or not enough ingredients.");
+						else if (!scanf("%d", &dircount) && getchar() && dircount > 0 && dircount <= MAX_COUNT)
+							printf("\nToo many or not enough directions entered.");
+						else
 						{
-							printf(" Enter ingredient %d) ", i + 1);
-							char ingredient[MAXSTR];
-							fgets(ingredient, MAXSTR, stdin);
-							removenewline(ingredient);
-							if (!SetRecipeIngredient(&Book[indexNumber], ingredient))
-								printf("\nMax number of ingredients reached.");
-						}
-						for (int i = 0; i < dircount; i++)
-						{
-							printf(" Enter ingredient %d) ", i + 1);
-							char direction[MAXSTR];
-							fgets(direction, MAXSTR, stdin);
-							removenewline(direction);
-							if (!SetRecipeDirection(&Book[indexNumber], direction))
-								printf("\nMax number of directions reached.");
+							getchar();
+							for (int i = 0; i < ingcount; i++)
+							{
+								printf("Enter ingredient #%d: ", i + 1);
+								char ingredient[MAXSTR];
+								fgets(ingredient, MAXSTR, stdin);
+								removenewline(ingredient);
+								if (!SetRecipeIngredient(&Book[indexNumber], ingredient))
+									printf("\nMax number of ingredients reached.");
+							}
+							for (int i = 0; i < dircount; i++)
+							{
+								printf("Enter direction #%d: ", i + 1);
+								char direction[MAXSTR];
+								fgets(direction, MAXSTR, stdin);
+								removenewline(direction);
+								if (!SetRecipeDirection(&Book[indexNumber], direction))
+									printf("\nMax number of directions reached.");
+							}
 						}
 					}
+					else
+						printf("Returning to main menu...\n");
 				}
 				else
 					printf("\nSorry, no recipe slots empty.");
 				break;
 			}
-			case 2:
+			case 2: //Delete a recipe
 			{
 				bool recipeExists = false;
 				for (int i = 0; i < MAX_COUNT; i++) //Check if any recipes exist to be deleted
@@ -100,7 +105,7 @@ int main(void)
 				}
 				if (recipeExists)
 				{
-					printf("Enter the number of the recipe you would like to delete.\n");
+					printf("Enter the number of the recipe you would like to delete, or enter 0 to cancel.\n");
 					int recipeDeleteNumber = 1;
 					for (int i = 0; i < MAX_COUNT; i++)
 					{
@@ -113,48 +118,86 @@ int main(void)
 					int delete;
 					if (scanf("%d", &delete) && getchar()) //Input validity check
 					{
-						delete--;
-						if (strcmp(Book[delete].Name, "EMPTY")) //Check if input corresponds to a valid recipe
+						if (!delete == 0)
 						{
-							for (int i = 0; i < Book[delete].Ingcount; i++) //Clears data from ingredients and directions
-								strcpy(Book[delete].ingredients[i].Ingredient, "");
-							for (int i = 0; i < Book[delete].Dircount; i++)
-								strcpy(Book[delete].directions[i].Direction, "");
-							strcpy(Book[delete].Name, "EMPTY");
-							Book[delete].rating.rating = 0;
-							Book[delete].Ingcount = 0;
-							Book[delete].Dircount = 0;
-							printf("Successfully deleted\n");
+							delete--; //Arrays start at 0, not 1
+							if (strcmp(Book[delete].Name, "EMPTY")) //Check if input corresponds to a valid recipe
+							{
+
+								for (int i = 0; i < Book[delete].Ingcount; i++) //Clears data from ingredients and directions
+									strcpy(Book[delete].ingredients[i].Ingredient, "");
+								for (int i = 0; i < Book[delete].Dircount; i++)
+									strcpy(Book[delete].directions[i].Direction, "");
+								strcpy(Book[delete].Name, "EMPTY");
+								Book[delete].rating.rating = 0;
+								Book[delete].Ingcount = 0;
+								Book[delete].Dircount = 0;
+								printf("Successfully deleted\n");
+							}
+							else
+								printf("That recipe doesn't exist. Please try again.\n");
 						}
 						else
-							printf("That recipe doesn't exist. Please try again.\n");
+							printf("Returning to main menu...\n");
 					}
 				}
 				else
 					printf("These is no recipe to delete.\n");
 				break;
 			}
-			case 3: 
+			case 3: //Edit a recipe (unfinished)
+			{
+				bool recipeExists = false;
+				for (int i = 0; i < MAX_COUNT; i++) //Check if any recipes exist to be edited
+				{
+					if (strcmp(Book[i].Name, "EMPTY"))
+						recipeExists = true;
+				}
+				if (recipeExists)
+				{
+					printf("Enter the number of the recipe you would like to edit.\n");
+					int recipeEditNumber = 1;
+					for (int i = 0; i < MAX_COUNT; i++)
+					{
+						if (strcmp(Book[i].Name, "EMPTY")) //Displays existing recipes
+						{
+							printf("%d) %s\n", Book[i].Indexnum, Book[i].Name);
+							recipeEditNumber++;
+						}
+					}
+					int edit;
+					if (scanf("%d", &edit) && getchar()) //Input validity check
+					{
+						printf("Editing recipe #%d\n", edit); //For testing
+
+						//to be written still
+
+
+
+					}
+					else
+						printf("That recipe doesn't exist. Please try again.\n");
+				}
+				else
+					printf("These is no recipe to edit.\n");
+				break;
+			}
+			case 4: //Display one
 			{
 
 				break;
 			}
-			case 4: 
+			case 5: //Display range
 			{
 
 				break;
 			}
-			case 5: 
+			case 6: //Display all
 			{
 
 				break;
 			}
-			case 6: 
-			{
-
-				break;
-			}
-			case 7: 
+			case 7: //Search
 			{
 				char input[MAXSTR];
 				printf("\nPlease enter the name of the recipe you are looking for: ");
@@ -176,8 +219,7 @@ int main(void)
 					printf("\nNo recipe found.");
 				break;
 			}
-				
-			case 8:
+			case 8: //Give rating
 			{
 				int sel = 1;
 				printf("\nWhich recipe would you like to rate? (Enter index number): ");
@@ -194,7 +236,6 @@ int main(void)
 				}
 				break;
 			}
-				
 		}
 	}
 

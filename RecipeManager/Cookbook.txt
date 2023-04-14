@@ -1,14 +1,23 @@
 
 1
+1
+1
 0
-0
-0
-EMPTY
+Chips
+Literally just a bag of chips
+Open them and eat them. It's not that hard.
 2
+4
+3
 0
-0
-0
-EMPTY
+Ham & Cheese Samdwich
+Ham slices
+Cheese slices
+Mayo
+Bread
+Place the cheese and ham on one slice of bread
+Spread mayo on the other slice of bread
+Put both pieces of bread together and enjoy!
 3
 0
 0

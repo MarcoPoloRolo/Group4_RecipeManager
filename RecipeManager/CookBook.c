@@ -14,7 +14,7 @@ void printMenuOptions() {
     printf("Enter 0 to quit\n");
     printf("Enter 1 to add a new recipe\n");
     printf("Enter 2 to delete a recipe\n");
-    printf("Enter 3 to update an existing recipe\n");
+    printf("Enter 3 to edit an existing recipe\n");
     printf("Enter 4 to display a recipe\n");
     printf("Enter 5 to display multiple recipes\n");
     printf("Enter 6 to display all recipes\n");
