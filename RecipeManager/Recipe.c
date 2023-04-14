@@ -13,17 +13,17 @@ RECIPE CreateNewRecipe(int index)
 }
 
 
-void DeleteRecipe(RECIPE) //Luke's function
+void DeleteRecipe(RECIPE r) //Luke's function
 {
 
 }
 
-void UpdateRecipe(RECIPE) //Luke's function
+void UpdateRecipe(RECIPE r) //Luke's function
 {
 
 }
 
-void DisplayRecipe(RECIPE) //Marko does all display functions
+void DisplayRecipe(RECIPE r) //Marko does all display functions
 {
 
 }
