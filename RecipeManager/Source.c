@@ -59,7 +59,7 @@ int main(void)
 				printf("Please enter each of the %d ingredient seperately.\n", Book[indexNumber].Ingcount);
 				for (int i = 0; i < Book[indexNumber].Ingcount; i++)
 				{
-					printf("%d) ", i+1);
+					printf("%d) ", i + 1);
 					scanf("%s", &Book[indexNumber].ingredients[i].Ingredient);
 				}
 				printf("Please enter the number of directions in the recipe:\n");
@@ -74,7 +74,47 @@ int main(void)
 			}
 			case 2:
 			{
-
+				bool recipeExists = false;
+				for (int i = 0; i < MAX_COUNT; i++) //Check if any recipes exist to be deleted
+				{
+					if (strcmp(Book[i].Name, "EMPTY"))
+						recipeExists = true;
+				}
+				if (recipeExists)
+				{
+					printf("Enter the number of the recipe you would like to delete.\n");
+					int recipeDeleteNumber = 1;
+					for (int i = 0; i < MAX_COUNT; i++)
+					{
+						if (strcmp(Book[i].Name, "EMPTY")) //Displays existing recipes
+						{
+							printf("%d) %s\n", Book[i].Indexnum, Book[i].Name);
+							recipeDeleteNumber++;
+						}
+					}
+					int delete;
+					if (scanf("%d", &delete) && getchar()) //Input validity check
+					{
+						delete--;
+						if (strcmp(Book[delete].Name, "EMPTY")) //Check if input corresponds to a valid recipe
+						{
+							for (int i = 0; i < Book[delete].Ingcount; i++) //Clears data from ingredients and directions
+								strcpy(Book[delete].ingredients[i].Ingredient, "");
+							for (int i = 0; i < Book[delete].Dircount; i++)
+								strcpy(Book[delete].directions[i].Direction, "");
+							strcpy(Book[delete].Name, "EMPTY");
+							Book[delete].rating.rating = 0;
+							Book[delete].Ingcount = 0;
+							Book[delete].Dircount = 0;
+							printf("Successfully deleted\n");
+						}
+						else
+							printf("That recipe doesn't exist. Please try again.\n");
+					}
+				}
+				else
+					printf("These is no recipe to delete.\n");
+				break;
 			}
 			case 3: 
 			{
