@@ -22,9 +22,7 @@ RECIPE CreateNewRecipe(int);
 
 void DisplayRecipe(RECIPE);			// 4)
 
-void DisplayMultipleRecipes(void);	// 5)
-
-void DisplayAllRecipes(void);		// 6)
+void DisplayRecipes(RECIPE*, int, int);		// 6)
 
 void RateRecipe(RECIPE*, int);			// 8)
 
@@ -41,3 +39,5 @@ bool WriteRecipeToFile(RECIPE);
 RECIPE ReadRecipeFromFile(FILE*);
 
 void converttolowercase(char*);
+
+void PrintRating(int);

@@ -12,11 +12,52 @@ RECIPE CreateNewRecipe(int index)
 	return r;
 }
 
-void DisplayRecipe(RECIPE book) //Marko does all display functions
-{
+void DisplayRecipe(RECIPE ds) {//Marko does all display functions
+	if (!strcmp(ds.Name, "EMPTY")) {
+		printf("Recipe is empty!\n");
+	}
+	else {
+		printf("----------------------------\n");
+		printf("Recipe: %s\n", ds.Name);
+		printf("----------------------------\n");
+		PrintRating(ds.rating.rating);
 
+		printf("Ingredients: \n");
+		for (int ingredientCount = 0; ingredientCount != ds.Ingcount; ingredientCount++) {
+			printf("%s\n", ds.ingredients[ingredientCount].Ingredient);
+		}
+		printf("\n");
+		printf("Directions: \n");
+		for (int directionsCount = 0; directionsCount != ds.Dircount; directionsCount++) {
+			printf("%s\n", ds.directions[directionsCount].Direction);
+		}
+
+	}
 }
 
+void DisplayRecipes(RECIPE* dr, int lowlimit, int upplimit) {
+	lowlimit--;
+	upplimit--;
+	for (int count = lowlimit; count <= upplimit; count++) {
+		if (strcmp(dr[count].Name, "EMPTY")) {
+			printf("----------------------------\n");
+			printf("Recipe: %s\n", dr[count].Name);
+			printf("----------------------------\n");
+			PrintRating(dr[count].rating.rating);
+
+			printf("Ingredients: \n");
+			for (int ingredientCount = 0; ingredientCount != dr[count].Ingcount; ingredientCount++) {
+				printf("%s\n", dr[count].ingredients[ingredientCount].Ingredient);
+			}
+			printf("\n");
+			printf("Directions: \n");
+			for (int directionsCount = 0; directionsCount != dr[count].Dircount; directionsCount++) {
+				printf("%s\n", dr[count].directions[directionsCount].Direction);
+			}
+			printf("\n");
+		}
+	}
+}
 //I think Julian is doing both search and rate a recipe
 
 void RateRecipe(RECIPE *r, int rating)
@@ -114,3 +155,13 @@ void converttolowercase(char *input)
 	}
 }
 
+void PrintRating(int rating) {
+	printf("Rating:\n");
+	for (int ratingCount = 1; ratingCount <= 5; ratingCount++) {
+		if (ratingCount <= rating) {
+			printf("*");
+		}
+	}
+	printf("(%d/5)\n", rating);
+	printf("\n");
+}
