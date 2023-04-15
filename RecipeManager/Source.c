@@ -68,7 +68,7 @@ int main(void)
 						else
 						{
 							getchar();
-							for (int i = 0; i < ingcount; i++)
+							for (int i = 0; i < ingcount; i++) //Assigns input to directions/instructions with loop
 							{
 								printf("Enter ingredient #%d: ", i + 1);
 								char ingredient[MAXSTR];
@@ -180,7 +180,7 @@ int main(void)
 						}
 						switch (recipeEditType) //Gets input and changes value in araay
 							{
-							case 1: //Recipe name
+							case 1: //Edit name
 							{
 								printf("Please enter the new name of the recipe:\n");
 								char name[MAXSTR];
@@ -191,7 +191,7 @@ int main(void)
 								printf("Name entered successfully\n");
 								break;
 							}
-							case 2: //Ingredients
+							case 2: //Edit ingredients
 							{
 								printf("Which ingredient would you like to edit?\n");
 
@@ -214,7 +214,7 @@ int main(void)
 									printf("Invalid response, please try again.\n");
 								break;
 							}
-							case 3: //Directions
+							case 3: //Edit directions
 							{
 								printf("Which direction would you like to edit?\n");
 
