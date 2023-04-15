@@ -20,11 +20,11 @@ typedef struct Recipe {
 
 RECIPE CreateNewRecipe(int);
 
-void DisplayRecipe(RECIPE);			// 4)
+void DisplayRecipe(RECIPE);
 
-void DisplayRecipes(RECIPE*, int, int);		// 6)
+void DisplayRecipes(RECIPE*, int, int);
 
-void RateRecipe(RECIPE*, int);			// 8)
+void RateRecipe(RECIPE*, int);
 
 bool SetRecipeIngredient(RECIPE*, char*);
 

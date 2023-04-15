@@ -12,8 +12,8 @@ RECIPE CreateNewRecipe(int index) // Creates empty recipe
 	return r;
 }
 
-void DisplayRecipe(RECIPE ds) {//Marko does all display functions
-	if (!strcmp(ds.Name, "EMPTY")) {
+void DisplayRecipe(RECIPE ds) {//Display Single Recipe from array
+	if (!strcmp(ds.Name, "EMPTY")) {//Check if empty
 		printf("Recipe is empty!\n");
 	}
 	else {
@@ -22,11 +22,13 @@ void DisplayRecipe(RECIPE ds) {//Marko does all display functions
 		printf("----------------------------\n");
 		PrintRating(ds.rating.rating);
 
+		//Print ingredients
 		printf("Ingredients: \n");
 		for (int ingredientCount = 0; ingredientCount != ds.Ingcount; ingredientCount++) {
 			printf("%s\n", ds.ingredients[ingredientCount].Ingredient);
 		}
 		printf("\n");
+		//Print directions
 		printf("Directions: \n");
 		for (int directionsCount = 0; directionsCount != ds.Dircount; directionsCount++) {
 			printf("%s\n", ds.directions[directionsCount].Direction);
@@ -35,21 +37,25 @@ void DisplayRecipe(RECIPE ds) {//Marko does all display functions
 	}
 }
 
-void DisplayRecipes(RECIPE* dr, int lowlimit, int upplimit) {
+void DisplayRecipes(RECIPE* dr, int lowlimit, int upplimit) {//Display range of recipies from array
+	//reduce limits by 1
 	lowlimit--;
 	upplimit--;
-	for (int count = lowlimit; count <= upplimit; count++) {
-		if (strcmp(dr[count].Name, "EMPTY")) {
+
+	for (int count = lowlimit; count <= upplimit; count++) {//Loop to get every number between the limits and use them in as indexes
+		if (strcmp(dr[count].Name, "EMPTY")) {//Check if empty
 			printf("----------------------------\n");
 			printf("Recipe: %s\n", dr[count].Name);
 			printf("----------------------------\n");
-			PrintRating(dr[count].rating.rating);
+			PrintRating(dr[count].rating.rating);//Print Rating function
 
+			//Printing ingredients per array[index]
 			printf("Ingredients: \n");
 			for (int ingredientCount = 0; ingredientCount != dr[count].Ingcount; ingredientCount++) {
 				printf("%s\n", dr[count].ingredients[ingredientCount].Ingredient);
 			}
 			printf("\n");
+			//Printing directions per array[index]
 			printf("Directions: \n");
 			for (int directionsCount = 0; directionsCount != dr[count].Dircount; directionsCount++) {
 				printf("%s\n", dr[count].directions[directionsCount].Direction);
@@ -58,7 +64,6 @@ void DisplayRecipes(RECIPE* dr, int lowlimit, int upplimit) {
 		}
 	}
 }
-//I think Julian is doing both search and rate a recipe
 
 void RateRecipe(RECIPE *r, int rating) // sets given recipe rating to a value between 1 and 5
 {
@@ -155,10 +160,10 @@ void converttolowercase(char *input) // converts each element in given string to
 	}
 }
 
-void PrintRating(int rating) {
+void PrintRating(int rating) {//Print rating number as stars (Utility)
 	printf("Rating:\n");
-	for (int ratingCount = 1; ratingCount <= 5; ratingCount++) {
-		if (ratingCount <= rating) {
+	for (int ratingCount = 1; ratingCount <= 5; ratingCount++) {//Loop through count and compare to rating.
+		if (ratingCount <= rating) {//Print star if less than or equal to.
 			printf("*");
 		}
 	}

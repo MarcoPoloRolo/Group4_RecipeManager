@@ -246,38 +246,43 @@ int main(void)
 				printf("These is no recipe to edit.\n");
 			break;
 		}
-		case 4: //Display one
+		case 4: //Display one Recipe
 		{
+			//Variables for checking and parameters
 			int sID;
+			bool inptCheck5 = true;
+
+			//Get inputs for variables
 			printf("\nEnter a recipe number between 1 and 25: ");
 			scanf_s("%d", &sID);
 			printf("\nDisplaying Recipe %d\n", sID);
-
-			bool inptCheck5 = true;
-			if (1 > sID || sID > 25) {
+			if (1 > sID || sID > MAX_COUNT) {//Check if input is valid
 				printf("Incorrect input. Enter with correct range.\n");
 				inptCheck5 = false;
 			}
-			else if (inptCheck5 == true) {
+			else if (inptCheck5 == true) {//Execute Function
 				sID--;
 				DisplayRecipe(Book[sID]);
 			}
 			break;
 
 		}
-		case 5: //Display range
+		case 5: //Display range of Recipies
 		{
+			//Variables for checking and parameters
 			int lowerlimit, upperlimit;
 			bool limitchecker = true;
+
+			//Get inputs for variables
 			printf("\nEnter the lower limit of the recipies you want to print(1 to  25): ");
 			scanf_s("%d", &lowerlimit);
 			printf("Enter the upper limit of the recipies you want to print(1 to  25): ");
 			scanf_s("%d", &upperlimit);
-			if (lowerlimit < 0 || upperlimit > MAX_COUNT) {
+			if (lowerlimit < 0 || upperlimit > MAX_COUNT) {//Check if limits are valid
 				printf("Your input did not fit the range. Try again!\n");
 				limitchecker = false;
 			}
-			else if (limitchecker == true) {
+			else if (limitchecker == true) {//Execute function
 				printf("\nPrinting all Recipies in range %d to %d...\n", lowerlimit, upperlimit);
 				DisplayRecipes(Book, lowerlimit, upperlimit);
 			}
@@ -287,7 +292,7 @@ int main(void)
 		{
 			printf("\nPrinting all Recipies...\n");
 
-			DisplayRecipes(Book, 1, 25);
+			DisplayRecipes(Book, 1, MAX_COUNT);//Execute function
 			break;
 		}
 		case 7: //Search
