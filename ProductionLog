@@ -9,6 +9,10 @@ Date: March 13, 2023; Collaborators: Julian(Editor), Luke(Developer), Marko(Impl
 
 DIVISION OF LABOUR
 Marko:
+-PrintRating function (Takes rating from struct as parameter and prints out stars based on number)
+-DisplayRecipe function (Takes array of structs and index as parameter and prints the struct information at that index)
+-DisplayRecipies function (Takes array of structs, lower, and upper range limit, and prints all struct data from within that range)
+-Displaying all recipies was done by using DisplayRecipes and making the lower and upper limit the size of the array.
 
 Luke:
 -AddNewRecipe function (takes input from user and stores it in array to be saved to file)
