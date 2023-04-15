@@ -2,7 +2,7 @@
 #include "CookBook.h"
 #include "Directions.h"
 #include "Ingredients.h"
-
+// prog 71985 - Group 4 (Julian, Marko and Luke) - Winter 2023 - Group assignment: Recipe manager
 
 typedef struct Rating {
 	int rating;

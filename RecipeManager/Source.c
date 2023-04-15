@@ -2,18 +2,18 @@
 #include "Directions.h"
 #include "Ingredients.h"
 #include "Recipe.h"
-
-
+// prog 71985 - Group 4 (Julian, Marko and Luke) - Winter 2023 - Group assignment: Recipe manager
+// Source file containing main
 
 int main(void) 
 {
-	RECIPE Book[MAX_COUNT] = { 0 }; //MAX_COUNT is currently set to 25. Can be changed later but right now, it's just to avoid errors
-	FILE* fp = fopen(FILENAME, "r");
-	if (!fp)
+	RECIPE Book[MAX_COUNT] = { 0 }; //Creates array of recipes
+	FILE* fp = fopen(FILENAME, "r"); 
+	if (!fp) // If file does not exist/is not found
 	{
 		for (int i = 0; i < MAX_COUNT; i++)
 		{
-			WriteRecipeToFile(CreateNewRecipe(i + 1));
+			WriteRecipeToFile(CreateNewRecipe(i + 1)); // Write blank slate of recipes to file
 		}
 	}
 	if (fp)
@@ -21,13 +21,13 @@ int main(void)
 	FILE* fp2 = fopen(FILENAME, "r");
 	for (int i = 0; i < MAX_COUNT; i++)
 	{
-		Book[i] = ReadRecipeFromFile(fp2);
+		Book[i] = ReadRecipeFromFile(fp2); // Read recipes from file into array in program
 	}
 	fclose(fp2);
 	
 
 	printTitle();
-	bool programcontinue = true;
+	bool programcontinue = true; // Program loop will run until this is false
 	while (programcontinue) {
 		printMenuOptions();
 		int caseinput = getUserMenuInput();
@@ -68,7 +68,7 @@ int main(void)
 						else
 						{
 							getchar();
-							for (int i = 0; i < ingcount; i++)
+							for (int i = 0; i < ingcount; i++) //Assigns input to directions/instructions with loop
 							{
 								printf("Enter ingredient #%d: ", i + 1);
 								char ingredient[MAXSTR];
@@ -180,7 +180,7 @@ int main(void)
 						}
 						switch (recipeEditType) //Gets input and changes value in araay
 							{
-							case 1: //Recipe name
+							case 1: //Edit name
 							{
 								printf("Please enter the new name of the recipe:\n");
 								char name[MAXSTR];
@@ -191,7 +191,7 @@ int main(void)
 								printf("Name entered successfully\n");
 								break;
 							}
-							case 2: //Ingredients
+							case 2: //Edit ingredients
 							{
 								printf("Which ingredient would you like to edit?\n");
 
@@ -214,7 +214,7 @@ int main(void)
 									printf("Invalid response, please try again.\n");
 								break;
 							}
-							case 3: //Directions
+							case 3: //Edit directions
 							{
 								printf("Which direction would you like to edit?\n");
 
@@ -294,41 +294,41 @@ int main(void)
 			{
 				char input[MAXSTR];
 				printf("\nPlease enter the name of the recipe you are looking for: ");
-				getchar();
+				getchar(); // Grabs newline left over from scanf when choosing option
 				fgets(input, MAXSTR, stdin);
-				removenewline(input);
-				converttolowercase(input);
+				removenewline(input); 
+				converttolowercase(input); // Converts input from user into all lowercase
 				int found = -1;
 				for (int i = 0; i < MAX_COUNT; i++)
 				{
 					char search[MAXSTR];
-					strcpy_s(search, sizeof(Book[i].Name), Book[i].Name);
+					strcpy_s(search, sizeof(Book[i].Name), Book[i].Name); // Loads each recipe name into a temporary array
 					converttolowercase(search);
-					if (strcmp(search, input) == 0)
+					if (strcmp(search, input) == 0) // If user input matches recipe name, set value of found to current value of i
 						found = i;
 				}
 				if (found != -1)
-					DisplayRecipe(Book[found]);
+					DisplayRecipe(Book[found]); // Display recipe searched for if found
 				else
-					printf("\nNo recipe found.");
+					printf("\nNo recipe found."); // Display this message if recipe not found/doesnt exist
 				break;
 			}
 			case 8: //Give rating
 			{
 				int sel = 1;
 				printf("\nWhich recipe would you like to rate? (Enter index number): ");
-				if (!scanf("%d", &sel) && getchar() && sel <= 25 && sel >= 1)
+				if (!scanf("%d", &sel) && getchar() && sel <= 25 && sel >= 1) // Checks that recipe index is correct
 					printf("\nInvalid recipe index entered.");
-				else if (strcmp(Book[sel - 1].Name, "EMPTY") == 0)
+				else if (strcmp(Book[sel - 1].Name, "EMPTY") == 0) // Checks that recipe index is not empty
 					printf("\nNo recipe in that index.");
 				else
 				{
 					int rating;
 					printf("\nEnter a rating, from 1 to 5: ");
-					if (!scanf("%d", &rating) && getchar() && rating < 6 && rating > 0)
+					if (!scanf("%d", &rating) && getchar() && rating < 6 && rating > 0) // Checks that rating is between 1 and 5 
 						printf("\nIncorrect rating value entered.");
 					else
-						RateRecipe(&Book[sel - 1], rating);
+						RateRecipe(&Book[sel - 1], rating); // Once all parameters are satisfied, rate chosen recipe with rating input
 				}
 				break;
 			}
@@ -336,11 +336,11 @@ int main(void)
 		}
 	}
 
-	FILE* fp3 = fopen(FILENAME, "w");
+	FILE* fp3 = fopen(FILENAME, "w"); // Overwrites previous file
 	fclose(fp3);
 	for (int i = 0; i < MAX_COUNT; i++)
 	{
-		WriteRecipeToFile(Book[i]);
+		WriteRecipeToFile(Book[i]); // Writes updated information into file
 	}
 	return 0;
 }
