@@ -1,11 +1,11 @@
 #include "Recipe.h"
 // prog 71985 - Group 4 (Julian, Marko and Luke) - Winter 2023 - Group assignment: Recipe manager
-RECIPE CreateNewRecipe(int index)
+RECIPE CreateNewRecipe(int index) // Creates empty recipe
 {
-	RECIPE r;
+	RECIPE r; 
 	r.Indexnum = index;
-	SetRecipeName(&r, "EMPTY");
-	r.Dircount = 0;
+	SetRecipeName(&r, "EMPTY"); // sets name to default value checked in main as "EMPTY" if no recipe has been set 
+	r.Dircount = 0; // all other values set to 0
 	r.Ingcount = 0;
 	r.rating.rating = 0;
 
