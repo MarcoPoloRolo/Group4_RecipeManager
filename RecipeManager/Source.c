@@ -3,8 +3,7 @@
 #include "Ingredients.h"
 #include "Recipe.h"
 // prog 71985 - Group 4 (Julian, Marko and Luke) - Winter 2023 - Group assignment: Recipe manager
-// Source file where program is run
-
+// Source file containing main
 
 int main(void) 
 {
