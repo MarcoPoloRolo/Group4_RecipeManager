@@ -1,11 +1,5 @@
 # Group4_RecipeManagerLog
-This is the group project for group 4, the BEST group of them all.
-
-Date: March 13, 2023; Collaborators: Julian(Editor), Luke(Developer), Marko(Implementer) 
-• Created source.c, CookBook.c and CookBook.h
-• Created Title Display Function and Menu Display options
-• Created 0 to 8 Switch cases for options
-• Created Function to take input for the menu (bugged)
+This is the group project for group 4,consisting of Julian Cumming, Marko Cvetkovic, and Luke Bolhous
 
 DIVISION OF LABOUR
 Marko:
