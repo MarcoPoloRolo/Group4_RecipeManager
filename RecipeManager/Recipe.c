@@ -60,7 +60,7 @@ void DisplayRecipes(RECIPE* dr, int lowlimit, int upplimit) {
 }
 //I think Julian is doing both search and rate a recipe
 
-void RateRecipe(RECIPE *r, int rating)
+void RateRecipe(RECIPE *r, int rating) // sets given recipe rating to a value between 1 and 5
 {
 	r->rating.rating = rating;
 }
@@ -75,26 +75,26 @@ void removenewline(char* buffer) // removes newline to prevent errors reading an
 bool WriteRecipeToFile(RECIPE r)
 {
 	FILE* fp = fopen(FILENAME, "a");
-	if (!fp)
+	if (!fp) // Checks that file exists/can be opened
 		return false; // If file error occurs, return false
-	fprintf(fp, "\n%d\n%d\n%d\n%d\n%s", r.Indexnum, r.Ingcount, r.Dircount, r.rating.rating, r.Name);
-	for (int i = 0; i < r.Ingcount; i++)
+	fprintf(fp, "\n%d\n%d\n%d\n%d\n%s", r.Indexnum, r.Ingcount, r.Dircount, r.rating.rating, r.Name); // Print first four values (all ints)
+	for (int i = 0; i < r.Ingcount; i++) // Prints each ingredient in order, each on its own line
 	{
 		fprintf(fp, "\n%s", r.ingredients[i].Ingredient);
 	}
-	for (int i = 0; i < r.Dircount; i++)
+	for (int i = 0; i < r.Dircount; i++) // Same as ingredients, but with directions
 	{
 		fprintf(fp, "\n%s", r.directions[i].Direction);
 	}
-	fclose(fp);
+	fclose(fp); // Close file when finished
 	return true;
 }
 
 bool SetRecipeIngredient(RECIPE *r, char* ingredient)
 {
-	if (r->Ingcount == MAX_COUNT)
+	if (r->Ingcount == MAX_COUNT) // If ingredient limit reached, return false
 		return false;
-	strcpy(r->ingredients[r->Ingcount].Ingredient, ingredient);
+	strcpy(r->ingredients[r->Ingcount].Ingredient, ingredient);  // Copy ingredient into recipe, incriment ingcount, then set next ingredient to "\0"
 	r->Ingcount++;
 	strcpy(r->ingredients[r->Ingcount].Ingredient, "\0");
 	return true;
@@ -102,41 +102,41 @@ bool SetRecipeIngredient(RECIPE *r, char* ingredient)
 
 bool SetRecipeDirection(RECIPE *r, char* direction)
 {
-	if (r->Dircount == MAX_COUNT)
+	if (r->Dircount == MAX_COUNT) // If direction limit reached, return false
 		return false;
-	strcpy(r->directions[r->Dircount].Direction, direction);
+	strcpy(r->directions[r->Dircount].Direction, direction); // Copy direction into recipe, incriment dircount, then set next direction to "\0"
 	r->Dircount++;
 	strcpy(r->directions[r->Dircount].Direction, "\0");
 	return true;
 }
 
-void SetRecipeName(RECIPE *r, char* name)
+void SetRecipeName(RECIPE *r, char* name) // Sets recipe name to string given
 {
 	strcpy(r->Name, name);
 }
 
 RECIPE ReadRecipeFromFile(FILE* fp)
 {
-	int indexnum, ingcount, dircount, rating;
+	int indexnum, ingcount, dircount, rating; // declare local variables to temporarily hold on to read values from file
 	char newline[MAXSTR];
 	char name[MAXSTR];
 	char ingredient[MAXSTR];
 	char direction[MAXSTR];
-	fscanf_s(fp, "\n%d\n%d\n%d\n%d", &indexnum, &ingcount, &dircount, &rating);
-	fgets(newline, MAXSTR, fp);
+	fscanf_s(fp, "\n%d\n%d\n%d\n%d", &indexnum, &ingcount, &dircount, &rating); // read first 4 elements
+	fgets(newline, MAXSTR, fp); 
 	fgets(name, MAXSTR, fp);
-	removenewline(name);
-	RECIPE r = CreateNewRecipe(indexnum);
+	removenewline(name); // reads recipe name
+	RECIPE r = CreateNewRecipe(indexnum); // create empty recipe
 	SetRecipeName(&r, name);
 	RateRecipe(&r, rating);
-	for (int i = 0; i < ingcount; i++)
+	for (int i = 0; i < ingcount; i++) // Fills in each ingredient slot in correct order in recipe
 	{
 		fgets(ingredient, MAXSTR, fp);
 		removenewline(ingredient);
 		if (!SetRecipeIngredient(&r, ingredient))
 			fprintf(stderr, "Error reading from file.");
 	}
-	for (int i = 0; i < dircount; i++)
+	for (int i = 0; i < dircount; i++) // Same as ingredients, but with directions
 	{
 		fgets(direction, MAXSTR, fp);
 		removenewline(direction);
@@ -147,7 +147,7 @@ RECIPE ReadRecipeFromFile(FILE* fp)
 	return r;
 }
 
-void converttolowercase(char *input)
+void converttolowercase(char *input) // converts each element in given string to lowercase for searching
 {
 	for (int i = 0; i < strlen(input); i++)
 	{
